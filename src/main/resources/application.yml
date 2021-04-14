@@ -1,0 +1,4 @@
+spring:
+  liquibase:
+    enabled: false
+    change-log: db/liquibase-changeLog.xml
