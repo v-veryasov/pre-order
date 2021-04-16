@@ -4,10 +4,19 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet author="John" id="someUniqueId">
-        <addColumn tableName="users">
-            <column name="address" type="varchar(255)"/>
+    <changeSet author="vveryasov" id="20210416-001">
+        <addColumn tableName="customers">
+            <column name="id" type="bigint"/>
+            <column name="login" type="varchar(20)"/>
+            <column name="password" type="varchar(35)"/>
+            <column name="first_name" type="varchar(40)"/>
+            <column name="middle_name" type="varchar(40)"/>
+            <column name="last_name" type="varchar(40)"/>
+            <column name="email" type="varchar(40)"/>
+            <column name="registration_date" type="datetime"/>
+            <column name="lastactivity_date" type="datetime"/>
         </addColumn>
     </changeSet>
 
+<!--    employee -->
 </databaseChangeLog>
