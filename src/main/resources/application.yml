@@ -1,4 +1,26 @@
+server:
+  port: ${SERVER_PORT:8080}
+  max-http-header-size: 16KB
+
 spring:
+  application:
+    name: pre-order
+  main:
+    banner-mode: off
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pre-order
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+  jpa:
+#    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc.lob.non_contextual_creation: true #HHH-12368
+#        temp:
+#          use_jdbc_metadata_defaults: true
+
   liquibase:
     enabled: false
-    change-log: db/liquibase-changeLog.xml
+    change-log: db/changelog/changes/liquibase-changeLog.xml

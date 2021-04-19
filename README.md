@@ -3,7 +3,7 @@
 ###### Commands:
 mvnw spring-boot:run
 
-mvnw package && java -jar target/pre-order-0.0.1-SNAPSHOT.jar
+mvnw package -DskipTests && java -jar target/pre-order-0.0.1-SNAPSHOT.jar
 mvnw clean package -DskipTests
 
 docker build -t pre-order **.**
