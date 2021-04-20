@@ -7,6 +7,10 @@ spring:
     name: pre-order
   main:
     banner-mode: off
+  jackson:
+    property-naming-strategy: UPPER_CAMEL_CASE
+    serialization:
+      indent-output: true
   datasource:
     url: jdbc:postgresql://localhost:5432/pre-order-core
     driver-class-name: org.postgresql.Driver

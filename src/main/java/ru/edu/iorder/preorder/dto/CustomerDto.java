@@ -13,12 +13,22 @@ import java.time.Instant;
 @AllArgsConstructor
 public class CustomerDto {
 
-    private String login;
-    private String password;
-    private String firstName;
-    private String middleName;
-    private String lastName;
-    private String email;
-    private Instant registrationDate;
-    private Instant lastActivityDate;
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    //    private String login;
+//    private String password;
+//    private String firstName;
+//    private String middleName;
+//    private String lastName;
+//    private String email;
+//    private Instant registrationDate;
+//    private Instant lastActivityDate;
 }

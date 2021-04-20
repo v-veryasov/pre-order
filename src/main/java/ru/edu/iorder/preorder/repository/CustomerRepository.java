@@ -5,5 +5,5 @@ import ru.edu.iorder.preorder.model.Customer;
 
 //TODO: почитать
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    Customer findByLogin(String login);
+//    Customer findByLogin(String login);
 }

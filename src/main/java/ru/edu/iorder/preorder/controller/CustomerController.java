@@ -1,6 +1,7 @@
 package ru.edu.iorder.preorder.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.edu.iorder.preorder.dto.CustomerDto;
 import ru.edu.iorder.preorder.service.CustomerService;

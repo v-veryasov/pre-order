@@ -1,6 +1,7 @@
 package ru.edu.iorder.preorder.service;
 
-import lombok.RequiredArgsConstructor;
+import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.edu.iorder.preorder.dto.CustomerDto;
 import ru.edu.iorder.preorder.mapper.CustomerMapper;
@@ -8,16 +9,15 @@ import ru.edu.iorder.preorder.model.Customer;
 import ru.edu.iorder.preorder.repository.CustomerRepository;
 
 @Service
-@RequiredArgsConstructor
 public class CustomerService {
 
-    public final CustomerRepository customerRepository;
-    public final CustomerMapper mapper;
+    @Autowired
+    public CustomerRepository customerRepository;
+//    private final CustomerMapper customerMapper = Mappers.getMapper(CustomerMapper.class);
 
     public CustomerDto create(CustomerDto dto) {
-        Customer entity = customerRepository.save(mapper.customerDtoToCustomer(dto));
-        return mapper.customerToCustomerDto(entity);
+//        Customer entity = customerRepository.save(customerMapper.customerDtoToCustomer(dto));
+//        return customerMapper.customerToCustomerDto(entity);
+        return null;
     }
-
-
 }
