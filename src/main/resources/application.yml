@@ -8,7 +8,7 @@ spring:
   main:
     banner-mode: off
   datasource:
-    url: jdbc:postgresql://localhost:5432/pre-order
+    url: jdbc:postgresql://localhost:5432/pre-order-core
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
@@ -22,5 +22,5 @@ spring:
 #          use_jdbc_metadata_defaults: true
 
   liquibase:
-    enabled: false
-    change-log: db/changelog/changes/liquibase-changeLog.xml
+    enabled: true
+    change-log: classpath:db/changelog/liquibase-changeLog.xml

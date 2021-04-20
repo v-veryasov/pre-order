@@ -1,10 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+	  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <changeSet author="vveryasov" id="20210416-001">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="customer" schemaName="pre-order"/>
+            </not>
+        </preConditions>
         <createTable tableName="customer" schemaName="pre-order">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
@@ -38,5 +44,5 @@
             <dropTable tableName="customer"/>
         </rollback>
     </changeSet>
-<!--    employee -->
+    <!--    employee -->
 </databaseChangeLog>
