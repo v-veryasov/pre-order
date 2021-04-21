@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.edu.iorder.preorder.dto.CustomerDto;
 import ru.edu.iorder.preorder.service.CustomerService;
 
+import java.time.Instant;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/customer")

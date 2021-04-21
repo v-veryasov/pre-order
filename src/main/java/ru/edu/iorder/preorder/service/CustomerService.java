@@ -13,9 +13,8 @@ import ru.edu.iorder.preorder.repository.CustomerRepository;
 public class CustomerService {
 
     public final CustomerRepository customerRepository;
-    @Autowired
+//    @Autowired
     private final CustomerMapper customerMapper;
-//    private final CustomerMapper customerMapper = Mappers.getMapper(CustomerMapper.class);
 
     public CustomerDto create(CustomerDto dto) {
         Customer entity = customerRepository.save(customerMapper.customerDtoToCustomer(dto));
