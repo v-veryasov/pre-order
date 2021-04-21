@@ -8,10 +8,10 @@
     <changeSet author="vveryasov" id="20210416-001">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="customer" schemaName="pre-order"/>
+                <tableExists tableName="customer"/>
             </not>
         </preConditions>
-        <createTable tableName="customer" schemaName="pre-order">
+        <createTable tableName="customer" >
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>

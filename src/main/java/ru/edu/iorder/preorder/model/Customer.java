@@ -1,9 +1,6 @@
 package ru.edu.iorder.preorder.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -13,15 +10,18 @@ import java.time.Instant;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 @Table(name = "customer")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column
+    @Column(name = "id")
+    private Long id;
+    @Column(name = "login")
     private String login;
-    @Column
+    @Column(name = "password")
     private String password;
     @Column(name = "first_name")
     private String firstName;
@@ -29,7 +29,7 @@ public class Customer {
     private String middleName;
     @Column(name = "last_name")
     private String lastName;
-    @Column
+    @Column(name = "email")
     private String email;
     @Column(name = "registration_date")
     private Instant registrationDate;
