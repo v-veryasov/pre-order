@@ -23,7 +23,13 @@ public class CustomerController {
         return customerService.create(dto);
     }
 
-//    public CustomerDto get() {
-//
-//    }
+    /**
+     * Получение информации о пользователе по ID
+     *
+     * @param id - ID пользователя в БД
+     */
+    @GetMapping("/{id}")
+    public CustomerDto get(@PathVariable Long id) {
+        return customerService.getById(id);
+    }
 }
