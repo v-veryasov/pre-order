@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.edu.iorder.preorder.dto.CustomerDto;
 import ru.edu.iorder.preorder.service.CustomerService;
 
-@Api(value = "API Сервиса пользователей")
+//@Api(description = "API Сервиса пользователей")
+@Api(tags = "API Сервиса пользователей")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/customer")
