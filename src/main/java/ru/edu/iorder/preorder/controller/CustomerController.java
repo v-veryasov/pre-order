@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.edu.iorder.preorder.dto.CustomerDto;
 import ru.edu.iorder.preorder.service.CustomerService;
@@ -22,6 +23,7 @@ public class CustomerController {
      */
     @ApiOperation(value = "Создание нового пользователя")
     @PostMapping("/")
+    @PreAuthorize("hasAuthority(write)")
     public CustomerDto create(@RequestBody CustomerDto dto) {
         return customerService.create(dto);
     }
@@ -33,6 +35,7 @@ public class CustomerController {
      */
     @ApiOperation(value = "Получение информации о пользователе по ID")
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority(read)")
     public CustomerDto get(@ApiParam(value = "ID пользователя в БД", required = true)
                            @PathVariable Long id) {
         return customerService.getById(id);

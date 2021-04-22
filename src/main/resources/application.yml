@@ -24,7 +24,15 @@ spring:
         jdbc.lob.non_contextual_creation: true #HHH-12368
 #        temp:
 #          use_jdbc_metadata_defaults: true
-
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/liquibase-changeLog.xml
+
+logging:
+  level:
+    .: DEBUG
+    feign: DEBUG
+    ru.edu: DEBUG
+    org.springframework:
+      web.filter.CommonsRequestLoggingFilter: DEBUG
+      security: DEBUG
