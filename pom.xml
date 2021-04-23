@@ -24,6 +24,8 @@
 
         <org.mapstruct.version>1.4.2.Final</org.mapstruct.version>
         <io.springfox.version>3.0.0</io.springfox.version>
+
+        <jsonwebtoken.version>0.9.1</jsonwebtoken.version>
     </properties>
 
     <dependencies>
@@ -52,12 +54,6 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
            <optional>true</optional>
@@ -72,10 +68,31 @@
             <artifactId>mapstruct-jdk8</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
+
+        <!-- Swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
             <version>${io.springfox.version}</version>
+        </dependency>
+
+        <!--JSON Web Token lib-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jsonwebtoken.version}</version>
+        </dependency>
+
+        <!-- Spring test -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -116,7 +133,7 @@
             <!--                <groupId>org.liquibase</groupId>-->
             <!--                <artifactId>liquibase-maven-plugin</artifactId>-->
             <!--                <configuration>-->
-            <!--                    <propertyFile>db/changelog/changes/liquibase-changeLog.xml</propertyFile>-->
+            <!--                    <propertyFile>db/changelog/changes/db.changelog-1.0.xml</propertyFile>-->
             <!--                </configuration>-->
             <!--            </plugin>-->
         </plugins>

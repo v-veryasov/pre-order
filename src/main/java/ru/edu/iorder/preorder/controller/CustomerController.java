@@ -23,7 +23,7 @@ public class CustomerController {
      */
     @ApiOperation(value = "Создание нового пользователя")
     @PostMapping("/")
-    @PreAuthorize("hasAuthority(write)")
+//    @PreAuthorize("hasAuthority(write)")
     public CustomerDto create(@RequestBody CustomerDto dto) {
         return customerService.create(dto);
     }
@@ -35,7 +35,7 @@ public class CustomerController {
      */
     @ApiOperation(value = "Получение информации о пользователе по ID")
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority(read)")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public CustomerDto get(@ApiParam(value = "ID пользователя в БД", required = true)
                            @PathVariable Long id) {
         return customerService.getById(id);
