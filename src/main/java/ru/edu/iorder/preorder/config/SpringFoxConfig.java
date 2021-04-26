@@ -14,6 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SpringFoxConfig {
 
+
     private static final String BASE_CONTROLLER_PACKAGE = "ru.edu.iorder.preorder.controller";
 
     @Bean
