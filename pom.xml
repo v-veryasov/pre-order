@@ -133,7 +133,7 @@
             <!--                <groupId>org.liquibase</groupId>-->
             <!--                <artifactId>liquibase-maven-plugin</artifactId>-->
             <!--                <configuration>-->
-            <!--                    <propertyFile>db/changelog/changes/db.changelog-1.0.xml</propertyFile>-->
+            <!--                    <propertyFile>db/changelog/changes/changelog-1.0.xml</propertyFile>-->
             <!--                </configuration>-->
             <!--            </plugin>-->
         </plugins>

@@ -5,47 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 	  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet author="vveryasov" id="20210416-001">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="customer"/>
-            </not>
-        </preConditions>
-        <createTable tableName="customer">
-            <column name="id" type="bigint" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="login" type="varchar(20)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="password" type="varchar(35)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="first_name" type="varchar(40)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="middle_name" type="varchar(40)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="last_name" type="varchar(40)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="email" type="varchar(40)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="registration_date" type="datetime">
-                <constraints nullable="true"/>
-            </column>
-            <column name="last_activity_date" type="datetime">
-                <constraints nullable="true"/>
-            </column>
-        </createTable>
-        <rollback>
-            <dropTable tableName="customer"/>
-        </rollback>
-    </changeSet>
-
-    <changeSet author="vveryasov" id="20210430-001">
+    <changeSet author="vladislav_veryasov" id="20210430-001">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="users"/>
@@ -94,7 +54,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet author="vveryasov" id="20210423-002">
+    <changeSet author="vladislav_veryasov" id="20210430-002">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="roles"/>
@@ -122,59 +82,57 @@
         </rollback>
     </changeSet>
 
-    <changeSet author="vveryasov" id="20210423-003">
+    <changeSet author="vladislav_veryasov" id="20210423-003">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="user_roles"/>
+                <tableExists tableName="users_roles"/>
             </not>
         </preConditions>
-        <createTable tableName="user_roles">
+        <createTable tableName="users_roles">
             <column name="user_id" type="BIGINT">
             </column>
-
             <column name="role_id" type="BIGINT">
             </column>
         </createTable>
         <rollback>
-            <dropTable tableName="user_roles"/>
+            <dropTable tableName="users_roles"/>
         </rollback>
     </changeSet>
 
-    <changeSet author="vveryasov" id="20210423-004">
+    <changeSet author="vladislav_veryasov" id="20210423-004">
         <preConditions onFail="MARK_RAN">
             <not>
-                <foreignKeyConstraintExists foreignKeyName="fk_user_roles_user"/>
+                <foreignKeyConstraintExists foreignKeyName="fk_users_roles_user"/>
             </not>
         </preConditions>
         <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="user_roles"
-                                 constraintName="fk_user_roles_user"
+                                 baseTableName="users_roles"
+                                 constraintName="fk_users_roles_user"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
                                  referencedTableName="users"/>
     </changeSet>
 
-    <changeSet author="vveryasov" id="20210423-005">
+    <changeSet author="vladislav_veryasov" id="20210423-005">
         <preConditions onFail="MARK_RAN">
             <not>
-                <foreignKeyConstraintExists foreignKeyName="fk_user_roles_roles"/>
+                <foreignKeyConstraintExists foreignKeyName="fk_users_roles_role"/>
             </not>
         </preConditions>
         <addForeignKeyConstraint baseColumnNames="role_id"
-                                 baseTableName="user_roles"
-                                 constraintName="fk_user_roles_roles"
+                                 baseTableName="users_roles"
+                                 constraintName="fk_users_roles_role"
                                  onDelete="CASCADE"
                                  onUpdate="RESTRICT"
                                  referencedColumnNames="id"
                                  referencedTableName="roles"/>
     </changeSet>
 
-    <changeSet author="vveryasov" id="20210423-006">
+    <changeSet author="vladislav_veryasov" id="20210423-006">
         <insert tableName="roles">
             <column name="name" value="ROLE_USER"/>
         </insert>
-
         <insert tableName="roles">
             <column name="name" value="ROLE_ADMIN"/>
         </insert>
