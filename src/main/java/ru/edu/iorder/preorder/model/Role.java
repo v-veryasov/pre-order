@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity
+//@Entity
 @Table(name = "roles")
 @Data
 @Builder

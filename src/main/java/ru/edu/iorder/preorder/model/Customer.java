@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.Instant;
 
-@Entity
+//@Entity
 @Data
 @Builder
 @AllArgsConstructor

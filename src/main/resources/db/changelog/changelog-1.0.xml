@@ -144,7 +144,7 @@
             </column>
             <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
             <!--            TODO: подумать как сделать!!! -->
-            <column name="avatar" type="datetime" defaultValue="now()">
+            <column name="avatar" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
             <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
@@ -231,7 +231,7 @@
             </column>
             <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
             <!--            TODO: подумать как сделать!!! -->
-            <column name="fhoto" type="datetime" defaultValue="now()">
+            <column name="fhoto" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
             <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
@@ -450,7 +450,7 @@
             </column>
             <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
             <!--            TODO: подумать как сделать!!! -->
-            <column name="fhoto" type="datetime" defaultValue="now()">
+            <column name="fhoto" type="VARCHAR(100)">
                 <constraints nullable="false"/>
             </column>
             <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->

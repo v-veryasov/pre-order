@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.edu.iorder.preorder.dto.CustomerDto;
-import ru.edu.iorder.preorder.service.CustomerService;
 
 //@Api(description = "API Сервиса пользователей")
 @Api(tags = "API Сервиса пользователей")
@@ -16,7 +15,7 @@ import ru.edu.iorder.preorder.service.CustomerService;
 @RequestMapping("/api/v1/customer")
 public class CustomerController {
 
-    private final CustomerService customerService;
+//    private final CustomerService customerService;
 
     /**
      * Создание нового пользователя
@@ -25,7 +24,8 @@ public class CustomerController {
     @PostMapping("/")
 //    @PreAuthorize("hasAuthority(write)")
     public CustomerDto create(@RequestBody CustomerDto dto) {
-        return customerService.create(dto);
+//        return customerService.create(dto);
+        return CustomerDto.builder().build();
     }
 
     /**
@@ -38,6 +38,7 @@ public class CustomerController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public CustomerDto get(@ApiParam(value = "ID пользователя в БД", required = true)
                            @PathVariable Long id) {
-        return customerService.getById(id);
+//        return customerService.getById(id);
+        return CustomerDto.builder().build();
     }
 }
