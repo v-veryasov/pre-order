@@ -129,7 +129,384 @@
                                  referencedTableName="roles"/>
     </changeSet>
 
-    <changeSet author="vladislav_veryasov" id="20210423-006">
+    <changeSet author="vladislav_veryasov" id="20210430-006">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="profiles"/>
+            </not>
+        </preConditions>
+        <createTable tableName="profiles">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="occupation" type="VARCHAR(100)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+            <!--            TODO: подумать как сделать!!! -->
+            <column name="avatar" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+            <column name="work_phone" type="integer">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="city" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rating" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="created" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="profiles"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-007">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users_profiles"/>
+            </not>
+        </preConditions>
+        <createTable tableName="users_profiles">
+            <column name="user_id" type="BIGINT">
+            </column>
+            <column name="profile_id" type="BIGINT">
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="users_profiles"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-008">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_users_profiles_user"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="users_profiles"
+                                 constraintName="fk_users_profiles_user"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-009">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_users_profiles_profile"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="profile_id"
+                                 baseTableName="users_profiles"
+                                 constraintName="fk_users_profiles_profile"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profiles"/>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210430-010">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="posts"/>
+            </not>
+        </preConditions>
+        <createTable tableName="posts">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+            <!--            TODO: подумать как сделать!!! -->
+            <column name="fhoto" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+            <column name="profile_id" type="BIGINT">
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="created" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="posts"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-011">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_posts_profile"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="profile_id"
+                                 baseTableName="posts"
+                                 constraintName="fk_posts_profile"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profiles"/>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210430-012">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="prices"/>
+            </not>
+        </preConditions>
+        <createTable tableName="prices">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="profile_id" type="BIGINT">
+            </column>
+            <column name="created" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="prices"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-013">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_prices_profile"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="profile_id"
+                                 baseTableName="prices"
+                                 constraintName="fk_prices_profile"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="profiles"/>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210430-014">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="calendars"/>
+            </not>
+        </preConditions>
+        <createTable tableName="calendars">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="calendars"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210430-015">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="days"/>
+            </not>
+        </preConditions>
+        <createTable tableName="days">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="day_of_week" type="varchar(25)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="is_day_off" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="calendar_id" type="BIGINT">
+            </column>
+            <column name="full_date" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="days"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-016">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_days_calendar"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="calendar_id"
+                                 baseTableName="days"
+                                 constraintName="fk_days_calendar"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="calendars"/>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210430-017">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="bookings"/>
+            </not>
+        </preConditions>
+        <createTable tableName="bookings">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+            </column>
+            <column name="assessment" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="order_status" type="VARCHAR(25)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="srart_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="finish_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="day_id" type="BIGINT">
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="bookings"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-018">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_bookings_user"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="bookings"
+                                 constraintName="fk_bookings_user"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-019">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_bookings_day"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="day_id"
+                                 baseTableName="bookings"
+                                 constraintName="fk_bookings_day"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="days"/>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210430-020">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="positions"/>
+            </not>
+        </preConditions>
+        <createTable tableName="positions">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+            <!--            TODO: подумать как сделать!!! -->
+            <column name="fhoto" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <!--            TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+            <column name="cost" type="integer">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="price_id" type="BIGINT">
+            </column>
+            <column name="booking_id" type="BIGINT">
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="created" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="positions"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-021">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_positions_price"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="price_id"
+                                 baseTableName="positions"
+                                 constraintName="fk_positions_price"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prices"/>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-022">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <foreignKeyConstraintExists foreignKeyName="fk_positions_booking"/>
+            </not>
+        </preConditions>
+        <addForeignKeyConstraint baseColumnNames="booking_id"
+                                 baseTableName="positions"
+                                 constraintName="fk_positions_booking"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bookings"/>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210423-23">
         <insert tableName="roles">
             <column name="name" value="ROLE_USER"/>
         </insert>
