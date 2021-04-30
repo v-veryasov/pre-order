@@ -45,9 +45,7 @@
         </rollback>
     </changeSet>
 
-    <!--    employee -->
-
-    <changeSet author="vveryasov" id="20210423-001">
+    <changeSet author="vveryasov" id="20210430-001">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="users"/>
@@ -57,25 +55,34 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="username" type="VARCHAR(100)">
+            <column name="email" type="varchar(40)">
+                <constraints nullable="true" unique="true"/>
+            </column>
+            <column name="password" type="varchar(35)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="middle_name" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="last_name" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="phone_number" type="integer">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="email" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
-            </column>
-            <column name="first_name" type="VARCHAR(100)">
+            <column name="city" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_name" type="VARCHAR(100)">
+            <column name="rating" type="int">
+                <constraints nullable="true"/>
+            </column>
+            <column name="create_date" type="datetime" defaultValue="now()">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="created" type="datetime" defaultValue="now()">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated" type="datetime" defaultValue="now()">
+            <column name="last_activity_date" type="datetime" defaultValue="now()">
                 <constraints nullable="false"/>
             </column>
             <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
