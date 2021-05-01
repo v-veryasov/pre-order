@@ -5,15 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.edu.iorder</groupId>
-    <artifactId>pre-order</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <artifactId>profile</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-    <name>pre-order</name>
 
-    <modules>
-        <module>auth</module>
-        <module>booking</module>
-        <module>profile</module>
-    </modules>
 </project>

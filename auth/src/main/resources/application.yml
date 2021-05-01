@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: pre-order
+    name: auth
   main:
     banner-mode: off
   jackson:
@@ -13,7 +13,7 @@ spring:
       write-date-timestamps-as-nanoseconds: false
     default-property-inclusion: non_null
   datasource:
-    url: jdbc:postgresql://localhost:5432/pre-order-core
+    url: jdbc:postgresql://localhost:5432/pre-order-auth
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
