@@ -2,49 +2,34 @@ package ru.edu.iorder.preorder.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ru.edu.iorder.preorder.dto.AuthReqDto;
-
-import java.util.HashMap;
-import java.util.Map;
+import ru.edu.iorder.preorder.security.AuthService;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/auth")
 public class AuthController {
 
-//    private final AuthenticationManager authenticationManager;
-//
-//    private final JwtTokenProvider jwtTokenProvider;
-//
-//    private final UserService userService;
+    private final AuthService authService;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthReqDto requestDto) {
-        try {
-//            String username = requestDto.getUsername();
-//            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, requestDto.getPassword()));
-//            User user = userService.findByUsername(username);
-//
-//            if (user == null) {
-//                throw new UsernameNotFoundException("User with username: " + username + " not found");
-//            }
-//
-//            String token = jwtTokenProvider.createToken(username, user.getRoles());
+    //@PostMapping("/signUp")
+    //public ResponseEntity<?> signUp(@RequestBody AuthReqDto reqDto) {
+    //
+    //}
 
-            Map<Object, Object> response = new HashMap<>();
-            response.put("username", "username");
-            response.put("token", "token");
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String index() {
+        return "Greetings from Spring Boot!";
+    }
 
-            return ResponseEntity.ok(response);
-        } catch (AuthenticationException e) {
-            throw new BadCredentialsException("Invalid username or password");
-        }
+    @PostMapping("/signIn")
+    public ResponseEntity<?> signIn(@RequestBody AuthReqDto reqDto) {
+        return ResponseEntity.ok(authService.signIn(reqDto));
     }
 
 //    @PostMapping("/logout")

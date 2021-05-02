@@ -15,8 +15,8 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/pre-order-auth
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: postgres
+    username: auth
+    password: auth
   jpa:
     properties:
       hibernate:

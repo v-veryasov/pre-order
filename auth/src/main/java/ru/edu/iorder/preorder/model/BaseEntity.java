@@ -2,6 +2,8 @@ package ru.edu.iorder.preorder.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -9,8 +11,10 @@ import javax.persistence.*;
 import java.time.Instant;
 
 @MappedSuperclass
-@Data
+//@Data
 @EqualsAndHashCode
+@Getter
+@Setter
 public class BaseEntity {
 
     @Id
@@ -18,14 +22,11 @@ public class BaseEntity {
     private Long id;
 
     @CreatedDate
-    @Column(name = "created")
+    @Column(name = "create_date")
     private Instant created;
 
     @LastModifiedDate
-    @Column(name = "updated")
+    @Column(name = "update_date")
     private Instant updated;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private Status status;
 }

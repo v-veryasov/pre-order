@@ -25,7 +25,8 @@ public class CustomerController {
 //    @PreAuthorize("hasAuthority(write)")
     public CustomerDto create(@RequestBody CustomerDto dto) {
 //        return customerService.create(dto);
-        return CustomerDto.builder().build();
+//        return CustomerDto.builder().build();
+        return null;
     }
 
     /**
@@ -39,6 +40,8 @@ public class CustomerController {
     public CustomerDto get(@ApiParam(value = "ID пользователя в БД", required = true)
                            @PathVariable Long id) {
 //        return customerService.getById(id);
-        return CustomerDto.builder().build();
+//        return CustomerDto.builder().build();
+        return null;
+
     }
 }

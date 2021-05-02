@@ -12,7 +12,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
-@Table(name = "customer")
+//@Table(name = "customer")
 public class Customer {
 
     @Id

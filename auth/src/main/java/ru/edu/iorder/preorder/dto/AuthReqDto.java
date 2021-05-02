@@ -6,12 +6,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@ApiModel(description = "Пользователь")
+@ApiModel(description = "Пользователь авторизации(запрос)")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthReqDto {
-    private String username;
-    private String password;
+
+    private String email;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String phoneNumber; //NOT NULL
+    private String userName; //NOT NULL
+    private String password; //NOT NULL
 }
