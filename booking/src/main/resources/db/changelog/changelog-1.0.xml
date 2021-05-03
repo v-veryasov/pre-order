@@ -5,46 +5,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 	  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <changeSet author="vladislav_veryasov" id="20210430-012">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <tableExists tableName="prices"/>
-            </not>
-        </preConditions>
-        <createTable tableName="prices">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false"/>
-            </column>
-            <column name="profile_id" type="BIGINT">
-            </column>
-            <column name="created" type="datetime" defaultValue="now()">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated" type="datetime" defaultValue="now()">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-        <rollback>
-            <dropTable tableName="prices"/>
-        </rollback>
-    </changeSet>
-
-    <changeSet author="vladislav_veryasov" id="20210423-013">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <foreignKeyConstraintExists foreignKeyName="fk_prices_profile"/>
-            </not>
-        </preConditions>
-        <addForeignKeyConstraint baseColumnNames="profile_id"
-                                 baseTableName="prices"
-                                 constraintName="fk_prices_profile"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="profiles"/>
-    </changeSet>
-
-    <changeSet author="vladislav_veryasov" id="20210430-017">
+    <changeSet author="vladislav_veryasov" id="20210305-001">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="bookings"/>
@@ -57,7 +18,8 @@
             <column name="name" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="user_id" type="BIGINT">
+            <column name="user_uuid" type="uuid">
+                <constraints nullable="false"/>
             </column>
             <column name="assessment" type="int">
                 <constraints nullable="true"/>
@@ -65,13 +27,11 @@
             <column name="order_status" type="VARCHAR(25)">
                 <constraints nullable="false"/>
             </column>
-            <column name="srart_date" type="datetime">
+            <column name="start_date" type="datetime">
                 <constraints nullable="false"/>
             </column>
             <column name="finish_date" type="datetime">
                 <constraints nullable="false"/>
-            </column>
-            <column name="day_id" type="BIGINT">
             </column>
         </createTable>
         <rollback>
@@ -79,37 +39,32 @@
         </rollback>
     </changeSet>
 
-    <changeSet author="vladislav_veryasov" id="20210423-018">
+    <changeSet author="vladislav_veryasov" id="20210305-002">
         <preConditions onFail="MARK_RAN">
             <not>
-                <foreignKeyConstraintExists foreignKeyName="fk_bookings_user"/>
+                <tableExists tableName="prices"/>
             </not>
         </preConditions>
-        <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="bookings"
-                                 constraintName="fk_bookings_user"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="users"/>
+        <createTable tableName="prices">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="profile_uuid" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="create_date" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_date" type="datetime" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <rollback>
+            <dropTable tableName="prices"/>
+        </rollback>
     </changeSet>
 
-    <changeSet author="vladislav_veryasov" id="20210423-019">
-        <preConditions onFail="MARK_RAN">
-            <not>
-                <foreignKeyConstraintExists foreignKeyName="fk_bookings_day"/>
-            </not>
-        </preConditions>
-        <addForeignKeyConstraint baseColumnNames="day_id"
-                                 baseTableName="bookings"
-                                 constraintName="fk_bookings_day"
-                                 onDelete="CASCADE"
-                                 onUpdate="RESTRICT"
-                                 referencedColumnNames="id"
-                                 referencedTableName="days"/>
-    </changeSet>
-
-    <changeSet author="vladislav_veryasov" id="20210430-020">
+    <changeSet author="vladislav_veryasov" id="20210305-003">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="positions"/>
@@ -122,12 +77,9 @@
             <column name="name" type="varchar(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
-                        TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-                        TODO: подумать как сделать!!!
-            <column name="fhoto" type="VARCHAR(100)">
+            <column name="photo_uuid" type="uuid">
                 <constraints nullable="false"/>
             </column>
-                        TODO: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
             <column name="cost" type="integer">
                 <constraints nullable="false" unique="true"/>
             </column>
@@ -138,10 +90,10 @@
             <column name="description" type="varchar(255)">
                 <constraints nullable="true" unique="true"/>
             </column>
-            <column name="created" type="datetime" defaultValue="now()">
+            <column name="create_date" type="datetime" defaultValue="now()">
                 <constraints nullable="false"/>
             </column>
-            <column name="updated" type="datetime" defaultValue="now()">
+            <column name="update_date" type="datetime" defaultValue="now()">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -150,7 +102,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet author="vladislav_veryasov" id="20210423-021">
+    <changeSet author="vladislav_veryasov" id="20210305-004">
         <preConditions onFail="MARK_RAN">
             <not>
                 <foreignKeyConstraintExists foreignKeyName="fk_positions_price"/>
@@ -165,7 +117,7 @@
                                  referencedTableName="prices"/>
     </changeSet>
 
-    <changeSet author="vladislav_veryasov" id="20210423-022">
+    <changeSet author="vladislav_veryasov" id="20210305-005">
         <preConditions onFail="MARK_RAN">
             <not>
                 <foreignKeyConstraintExists foreignKeyName="fk_positions_booking"/>
@@ -179,5 +131,4 @@
                                  referencedColumnNames="id"
                                  referencedTableName="bookings"/>
     </changeSet>
-        -->
 </databaseChangeLog>

@@ -1,10 +1,10 @@
 server:
-  port: ${SERVER_PORT:8081}
+  port: ${SERVER_PORT:8083}
   max-http-header-size: 16KB
 
 spring:
   application:
-    name: auth
+    name: booking
   main:
     banner-mode: off
   jackson:
@@ -13,10 +13,10 @@ spring:
       write-date-timestamps-as-nanoseconds: false
     default-property-inclusion: non_null
   datasource:
-    url: jdbc:postgresql://localhost:5432/pre-order-auth
+    url: jdbc:postgresql://localhost:5432/pre-order-booking
     driver-class-name: org.postgresql.Driver
-    username: auth
-    password: auth
+    username: booking
+    password: booking
   jpa:
     properties:
       hibernate:
