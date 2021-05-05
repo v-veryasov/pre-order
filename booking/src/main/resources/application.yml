@@ -28,6 +28,11 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/master.xml
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8084/eureka/
+
 logging:
   level:
     .: DEBUG
@@ -35,7 +40,7 @@ logging:
     ru.edu: DEBUG
     org.springframework:
       web.filter.CommonsRequestLoggingFilter: DEBUG
-      security: DEBUG
+#      security: DEBUG
 
 jwt:
   token:

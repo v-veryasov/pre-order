@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SpringFoxConfig {
+public class SwaggerConfig {
 
 
     private static final String BASE_CONTROLLER_PACKAGE = "ru.edu.iorder.preorder.controller";

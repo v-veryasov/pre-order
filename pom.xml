@@ -12,8 +12,9 @@
     <name>pre-order</name>
 
     <modules>
-        <module>auth</module>
+<!--        <module>auth</module>-->
         <module>booking</module>
         <module>profile</module>
+        <module>eureka</module>
     </modules>
 </project>

@@ -1,0 +1,19 @@
+server:
+  port: ${SERVER_PORT:8084}
+  max-http-header-size: 16KB
+
+spring:
+  application:
+    name: eureka-service
+
+eureka:
+  instance:
+    #eureka's host
+    hostname: localhost
+  client:
+    #Do not register yourself with the registration center
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      #External service address
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
