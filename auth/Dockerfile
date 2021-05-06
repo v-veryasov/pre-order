@@ -1,7 +1,7 @@
 FROM openjdk:8-jdk-alpine
 
 ARG JAR_FILE=target/*.jar
-ENV SERVER_PORT=8081
+ENV SERVER_PORT=8181
 
 EXPOSE $SERVER_PORT
 ENTRYPOINT java -jar /opt/pre-order/pre-order-app.jar
