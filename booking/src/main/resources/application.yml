@@ -27,6 +27,13 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/master.xml
+  kafka:
+#    consumer:
+#      group-id: tpd-loggers
+#      auto-offset-reset: earliest
+#    # change this property if you are using your own
+#    # Kafka cluster or your Docker IP is different
+    bootstrap-servers: localhost:9092
 
 eureka:
   client:
@@ -46,3 +53,7 @@ jwt:
   token:
     secret: jwtAppDemo
     expired: 360000
+
+tpd:
+  topic-name: advice-topic
+  messages-per-request: 10

@@ -27,6 +27,11 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/master.xml
+  kafka:
+    consumer:
+      group-id: tpd-loggers
+      auto-offset-reset: earliest
+    bootstrap-servers: localhost:9092
 
 eureka:
   client:
@@ -57,3 +62,7 @@ jwt:
   token:
     secret: jwtAppDemo
     expired: 360000
+
+tpd:
+  topic-name: advice-topic
+  messages-per-request: 10
