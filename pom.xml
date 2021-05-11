@@ -13,6 +13,7 @@
 
     <modules>
 <!--        <module>auth</module>-->
+        <module>api-gateway-auth</module>
         <module>booking</module>
         <module>profile</module>
         <module>eureka</module>

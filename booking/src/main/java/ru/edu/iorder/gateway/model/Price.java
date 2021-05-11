@@ -1,4 +1,4 @@
-package ru.edu.iorder.booking.model;
+package ru.edu.iorder.gateway.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,11 +6,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,34 +28,25 @@ import java.util.UUID;
 @Setter
 @Builder
 @Entity
-@Table(name = "bookings")
-public class Booking {
+@Table(name = "prices")
+public class Price {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "profile_uuid")
+    private UUID profileUuid;
 
-    @Column(name = "user_uuid")
-    private UUID userUuid;
+    @CreatedDate
+    @Column(name = "create_date")
+    private Instant created;
 
-    @Column(name = "assessment")
-    private int assessment;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "order_status")
-    private OrdStatus ordStatus;
-
-    @Column(name = "start_date")
-    private Instant startDate;
-
-    @Column(name = "finish_date")
-    private Instant finishDate;
+    @LastModifiedDate
+    @Column(name = "update_date")
+    private Instant updated;
 
     //@ToString.Exclude
-    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "price", fetch = FetchType.LAZY)
     private List<Position> positions;
-
 }
