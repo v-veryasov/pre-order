@@ -7,6 +7,6 @@ import ru.edu.iorder.profile.proxy.BookingControllerProxy;
 public class BookingControllerFallback implements BookingControllerProxy {
     @Override
     public String create() {
-        return null;
+        return "TEST Fallback!";
     }
 }
