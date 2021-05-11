@@ -1,4 +1,4 @@
-package ru.edu.iorder.booking.controller;
+package ru.edu.iorder.gateway.controller;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;

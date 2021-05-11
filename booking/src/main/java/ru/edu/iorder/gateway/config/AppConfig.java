@@ -1,4 +1,4 @@
-package ru.edu.iorder.booking.config;
+package ru.edu.iorder.gateway.config;
 
 import feign.RequestInterceptor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,0 +1,95 @@
+server:
+  port: ${SERVER_PORT:8100}
+  max-http-header-size: 16KB
+
+spring:
+  application:
+    name: api-gateway-auth
+  main:
+    banner-mode: off
+#  jackson:
+#    serialization:
+#      write-dates-as-timestamps: true
+#      write-date-timestamps-as-nanoseconds: false
+#    default-property-inclusion: non_null
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/pre-order-booking
+#    driver-class-name: org.postgresql.Driver
+#    username: booking
+#    password: booking
+#  jpa:
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        jdbc.lob.non_contextual_creation: true #HHH-12368
+##        temp:
+##          use_jdbc_metadata_defaults: true
+#  liquibase:
+#    enabled: false
+#    change-log: classpath:db/changelog/master.xml
+#  kafka:
+#    consumer:
+#      group-id: tpd-loggers
+#      auto-offset-reset: earliest
+#    # change this property if you are using your own
+#    # Kafka cluster or your Docker IP is different
+#    bootstrap-servers: localhost:9092
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8184/eureka/
+
+feign:
+  hystrix:
+    enabled: true
+  client:
+    config:
+      default:
+        connectTimeout: ${FEIGN_CONNECT_TIMEOUT:5000}
+        readTimeout: ${FEIGN_READ_TIMEOUT:5000}
+        loggerLevel: ${FEIGN_LOGGER_LEVEL:full}
+        decode404: ${FEIGN_DECODE_404:true}
+
+hystrix:
+  command:
+    booking:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+    profile:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+zuul:
+  ignored-services: '*'
+
+  prefix: /api/v1
+  routes:
+    booking:
+      path: /booking/**
+      service-id: booking
+    profile:
+      path: /profile/**
+      service-id: profile
+
+logging:
+  level:
+    .: DEBUG
+    feign: DEBUG
+    ru.edu: DEBUG
+    org.springframework:
+      web.filter.CommonsRequestLoggingFilter: DEBUG
+#      security: DEBUG
+
+#jwt:
+#  token:
+#    secret: jwtAppDemo
+#    expired: 360000
+#
+#tpd:
+#  topic-name: advice-topic
+#  messages-per-request: 10
