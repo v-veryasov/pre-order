@@ -1,0 +1,16 @@
+server:
+  port: ${SERVER_PORT:8888}
+  max-http-header-size: 16KB
+
+spring:
+  application:
+    name: central-configuration
+  main:
+    banner-mode: off
+  profiles:
+    active: local, development, production
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8184/eureka/
