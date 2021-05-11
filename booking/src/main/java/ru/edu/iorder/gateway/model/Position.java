@@ -1,4 +1,4 @@
-package ru.edu.iorder.booking.model;
+package ru.edu.iorder.gateway.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,14 +11,12 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.time.Instant;
-import java.util.List;
 import java.util.UUID;
 
 @EqualsAndHashCode
@@ -28,15 +26,24 @@ import java.util.UUID;
 @Setter
 @Builder
 @Entity
-@Table(name = "prices")
-public class Price {
+@Table(name = "positions")
+public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "profile_uuid")
-    private UUID profileUuid;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "photo_uuid")
+    private UUID photoUuid;
+
+    @Column(name = "cost")
+    private int cost;
+
+    @Column(name = "description")
+    private String description;
 
     @CreatedDate
     @Column(name = "create_date")
@@ -46,7 +53,9 @@ public class Price {
     @Column(name = "update_date")
     private Instant updated;
 
-    //@ToString.Exclude
-    @OneToMany(mappedBy = "price", fetch = FetchType.LAZY)
-    private List<Position> positions;
+    @ManyToOne
+    private Price price;
+
+    @ManyToOne
+    private Booking booking;
 }

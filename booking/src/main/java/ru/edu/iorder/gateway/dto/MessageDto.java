@@ -1,4 +1,4 @@
-package ru.edu.iorder.booking.dto;
+package ru.edu.iorder.gateway.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
