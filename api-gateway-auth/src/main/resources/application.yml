@@ -72,6 +72,8 @@ zuul:
     booking:
       path: /booking/**
       service-id: booking
+#      url: http://booking/spring-zuul-foos-resource/foos
+      stripPrefix: false
     profile:
       path: /profile/**
       service-id: profile
