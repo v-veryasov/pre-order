@@ -1,4 +1,4 @@
-package ru.edu.iorder.gateway.dto;
+package ru.edu.iorder.booking.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
