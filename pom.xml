@@ -13,7 +13,8 @@
 
     <modules>
 <!--        <module>auth</module>-->
-        <module>api-gateway-auth</module>
+        <module>auth-sso</module>
+        <module>api-gateway</module>
         <module>booking</module>
         <module>profile</module>
         <module>eureka</module>
