@@ -1,4 +1,4 @@
-package ru.edu.iorder.gateway;
+package ru.edu.iorder.booking;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

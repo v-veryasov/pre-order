@@ -67,12 +67,12 @@ hystrix:
 zuul:
   ignored-services: '*'
 
-  prefix: /api/v1
+#  prefix: /api/v1
   routes:
     booking:
-      path: /booking/**
+      path: /api/v1/booking/**
       service-id: booking
-#      url: http://booking/spring-zuul-foos-resource/foos
+#      url: http://booking/api/v1/booking
       stripPrefix: false
     profile:
       path: /profile/**
