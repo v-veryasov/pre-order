@@ -1,0 +1,43 @@
+server:
+  port: ${SERVER_PORT:8181}
+  max-http-header-size: 16KB
+
+spring:
+  application:
+    name: auth-sso
+  main:
+    banner-mode: off
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+      write-date-timestamps-as-nanoseconds: false
+    default-property-inclusion: non_null
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pre-order-auth
+    driver-class-name: org.postgresql.Driver
+    username: auth
+    password: auth
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc.lob.non_contextual_creation: true #HHH-12368
+#        temp:
+#          use_jdbc_metadata_defaults: true
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/master.xml
+
+logging:
+  level:
+    .: DEBUG
+    feign: DEBUG
+    ru.edu: DEBUG
+    org.springframework:
+      web.filter.CommonsRequestLoggingFilter: DEBUG
+      security: DEBUG
+
+jwt:
+  token:
+    secret: jwtAppDemo
+    expired: 360000
