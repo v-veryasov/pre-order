@@ -88,7 +88,26 @@
             <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
 <!--            <version>2.2.7.RELEASE</version>-->
         </dependency>
-		
+        <!-- Secure		-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>2.5.0.RELEASE</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.security</groupId>-->
+<!--            <artifactId>spring-security-oauth2-client</artifactId>-->
+<!--            <version>5.3.3.RELEASE</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+            <version>1.1.0.RELEASE</version>
+        </dependency>
         <!-- Swagger -->
         <dependency>
             <groupId>io.springfox</groupId>
