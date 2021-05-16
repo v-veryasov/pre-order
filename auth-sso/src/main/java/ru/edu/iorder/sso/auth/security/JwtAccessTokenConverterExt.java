@@ -1,0 +1,35 @@
+package ru.edu.iorder.sso.auth.security;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
+import org.springframework.security.oauth2.common.OAuth2AccessToken;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import ru.edu.iorder.sso.auth.security.jwt.JwtUser;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class JwtAccessTokenConverterExt extends JwtAccessTokenConverter {
+
+    private static final String ID = "id";
+    private static final String INN = "inn";
+    private static final String FULL_NAME = "full_name";
+    private static final String PARTICIPANT_ID = "pid";
+    private static final String USER_NAME = "user_name";
+    private static final String USER_STATUS = "user_status";
+
+    @Override
+    public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
+        addAdditionalInfo((DefaultOAuth2AccessToken) accessToken, (JwtUser) authentication.getPrincipal());
+        return super.enhance(accessToken, authentication);
+    }
+
+    private void addAdditionalInfo(DefaultOAuth2AccessToken accessToken, JwtUser principal) {
+        Map<String, Object> mapInfo = new HashMap<>();
+        mapInfo.put(ID, principal.getId());
+        mapInfo.put(USER_NAME, principal.getUsername());
+        accessToken.setAdditionalInformation(mapInfo);
+
+    }
+}
