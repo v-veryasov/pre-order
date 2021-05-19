@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping("/")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public String create() {
         return "Test GATE!!!";
     }
