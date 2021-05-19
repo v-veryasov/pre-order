@@ -17,7 +17,6 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import ru.edu.iorder.sso.auth.security.JwtAccessTokenConverterExt;
-import ru.edu.iorder.sso.auth.security.JwtUserDetailsService;
 
 import javax.sql.DataSource;
 
