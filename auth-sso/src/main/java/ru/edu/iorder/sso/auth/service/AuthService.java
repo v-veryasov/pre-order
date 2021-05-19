@@ -39,7 +39,7 @@ public class AuthService {
     }
 
     public MessageResponseDto signIn(UserDto reqDto) {
-        User user = userMapper.userDtoToUser(reqDto);
+        User user = userService.findByUsername(reqDto.getUserName());
         return appUserAuthService.getToken(user);
         //try {
         //    String userName = reqDto.getUserName();
