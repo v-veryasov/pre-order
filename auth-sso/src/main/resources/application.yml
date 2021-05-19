@@ -38,7 +38,7 @@ security:
   enabled: ${SECURITY_ENABLED:true}
   oauth2:
     client:
-      clientId: ${SECURITY_OAUTH2_CLIENT_ID:porder-service}
+      clientId: ${SECURITY_OAUTH2_CLIENT_ID:auth-id-service}
       clientSecret: ${SECURITY_OAUTH2_CLIENT_SECRET:secret}
       scope: trusted
       accessTokenUri: ${crpt-auth-uri}/oauth/token

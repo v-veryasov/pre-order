@@ -1,6 +1,5 @@
 package ru.edu.iorder.sso.auth.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -13,11 +12,7 @@ import java.util.Map;
 public class JwtAccessTokenConverterExt extends JwtAccessTokenConverter {
 
     private static final String ID = "id";
-    private static final String INN = "inn";
-    private static final String FULL_NAME = "full_name";
-    private static final String PARTICIPANT_ID = "pid";
     private static final String USER_NAME = "user_name";
-    private static final String USER_STATUS = "user_status";
 
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
