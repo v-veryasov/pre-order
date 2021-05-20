@@ -15,6 +15,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import ru.edu.iorder.sso.auth.security.JwtAccessTokenConverterExt;
@@ -83,9 +84,14 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     /**
      * Бин извлечение данных из JWT токена
      */
+//    @Bean
+//    public JwtTokenStore tokenStore() {
+//        return new JwtTokenStore(accessTokenConverter());
+//    }
+
     @Bean
-    public JwtTokenStore tokenStore() {
-        return new JwtTokenStore(accessTokenConverter());
+    public JdbcTokenStore tokenStore() {
+        return new JdbcTokenStore(dataSource);
     }
 
     /**
