@@ -30,14 +30,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 //.antMatchers("/api/v1/auth/**").permitAll()
-                .antMatchers(HttpMethod.OPTIONS, "/oauth/token").permitAll()
-                .antMatchers(HttpMethod.POST, "/oauth/token").permitAll().and().httpBasic()
-                .and()
-//                .antMatchers("/api/v1/customer/**").hasRole("ADMIN")
-                .antMatcher("/**")
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated();
+                .antMatchers("/oauth/token").permitAll()
+//                .antMatchers(HttpMethod.POST, "/oauth/token").permitAll().and().httpBasic()
+                .anyRequest().authenticated();
     }
 
     @Override

@@ -11,9 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/gate")
 public class TestController {
 
-    @GetMapping("/")
+    @GetMapping("/user")
     @PreAuthorize("hasRole('ROLE_USER')")
     public String create() {
+        return "Test GATE!!!";
+    }
+
+    @GetMapping("/admin")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String createAdmin() {
+        return "Test GATE!!!";
+    }
+
+    @GetMapping("/super/admin")
+    @PreAuthorize("hasRole('ROLE_SUPER_ADMIN')")
+    public String createSuperAdmin() {
         return "Test GATE!!!";
     }
 }
