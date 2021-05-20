@@ -16,11 +16,11 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 //@ConditionalOnMissingBean(value = ResourceServerConfigurerAdapter.class)
 public class ResourceServerAutoConfiguration extends ResourceServerConfigurerAdapter {
 
-    @Autowired
-    private DefaultTokenServices defaultTokenServices;
+//    @Autowired
+//    private DefaultTokenServices defaultTokenServices;
 
     @Override
     public void configure(ResourceServerSecurityConfigurer config) {
-        config.resourceId("auth-sso").tokenServices(defaultTokenServices);
+        config.resourceId("auth-sso").stateless(false);
     }
 }
