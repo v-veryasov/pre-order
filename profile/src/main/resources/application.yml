@@ -38,6 +38,19 @@ eureka:
     service-url:
       defaultZone: http://localhost:8184/eureka/
 
+security:
+  oauth2:
+    client:
+      clientId: ${SECURITY_OAUTH2_CLIENT_ID:profile-service}
+      clientSecret: ${SECURITY_OAUTH2_CLIENT_SECRET:secret}
+      scope: trusted
+      accessTokenUri: http://localhost:8177/oauth/token
+      userAuthorizationUri: http://localhost:8177/oauth/token
+
+    resource:
+      tokenInfoUri: http://localhost:8177/oauth/check_token
+      jwt.keyValue: ${SECURITY_OAUTH2_JWT_KEY:jwt-secret}
+
 feign:
   hystrix:
     enabled: true
