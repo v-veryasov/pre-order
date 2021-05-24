@@ -14,7 +14,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @Configuration
 @EnableResourceServer
 //@ConditionalOnMissingBean(value = ResourceServerConfigurerAdapter.class)
-public class ResourceServerAutoConfiguration extends ResourceServerConfigurerAdapter {
+public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
 //    @Autowired
 //    private DefaultTokenServices defaultTokenServices;
