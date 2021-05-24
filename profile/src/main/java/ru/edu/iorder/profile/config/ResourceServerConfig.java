@@ -13,18 +13,17 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .headers().frameOptions().disable()
-                .and()
+                //.headers().frameOptions().disable()
+                //.and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/eureka/**").permitAll()
-                .anyRequest()
-                .authenticated();
+                .anyRequest().authenticated();
     }
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.resourceId("profile");
+        resources.resourceId("auth-sso").stateless(true);
     }
 
 }
