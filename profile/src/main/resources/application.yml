@@ -48,9 +48,9 @@ security:
 #      userAuthorizationUri: http://localhost:8177/oauth/token
 
     resource:
-      tokenInfoUri: http://localhost:8177/oauth/check_token
+#      tokenInfoUri: http://localhost:8177/oauth/check_token
 #      TODO:  jwt.keyValue or tokenInfoUri
-#      jwt.keyValue: ${SECURITY_OAUTH2_JWT_KEY:jwt-secret}
+      jwt.keyValue: ${SECURITY_OAUTH2_JWT_KEY:jwt-secret}
 
 feign:
   hystrix:
