@@ -41,8 +41,8 @@ security:
       clientId: ${SECURITY_OAUTH2_CLIENT_ID:auth-id-service}
       clientSecret: ${SECURITY_OAUTH2_CLIENT_SECRET:secret}
       scope: trusted
-      accessTokenUri: ${pre-order-uri}/oauth/token
-      userAuthorizationUri: ${pre-order-uri}/oauth/token
+      accessTokenUri:  http://localhost:8177/oauth/token
+      userAuthorizationUri:  http://localhost:8177/oauth/token
     resource:
       jwt:
         keyValue: ${SECURITY_OAUTH2_JWT_KEY:jwt-secret}
