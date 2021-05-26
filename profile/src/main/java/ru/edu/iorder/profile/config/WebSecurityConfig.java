@@ -3,6 +3,7 @@ package ru.edu.iorder.profile.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,14 +23,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Value("${security.oauth2.client.clientSecret}")
     private String clientSecret;
 
-    @Value("${security.oauth2.resource.tokenInfoUri}")
-    private String checkAuthUrl;
+//    @Value("${security.oauth2.resource.tokenInfoUri}")
+//    private String checkAuthUrl;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/**").authenticated();
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .anyRequest().authenticated();
     }
 
     //@Bean
