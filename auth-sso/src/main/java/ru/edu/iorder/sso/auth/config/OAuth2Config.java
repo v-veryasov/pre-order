@@ -24,15 +24,6 @@ import javax.sql.DataSource;
 @EnableAuthorizationServer
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
-    @Value("${security.oauth2.client.clientId}")
-    private String clientId;
-
-    @Value("${security.oauth2.client.clientSecret}")
-    private String clientSecret;
-
-    @Value("${security.oauth2.client.scope}")
-    private String scope;
-
     @Value("${security.oauth2.resource.jwt.keyValue}")
     private String jwtSecret;
 
@@ -62,7 +53,6 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
         oauthServer.tokenKeyAccess("permitAll()")
                 .checkTokenAccess("permitAll()");
-//                .allowFormAuthenticationForClients();
     }
 
     @Bean

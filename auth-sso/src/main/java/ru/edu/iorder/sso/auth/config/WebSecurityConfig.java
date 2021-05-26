@@ -43,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //.antMatchers("/api/v1/auth/**").permitAll()
                 .antMatchers("/oauth/token").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 //                .antMatchers(HttpMethod.POST, "/oauth/token").permitAll().and().httpBasic()
                 .anyRequest().authenticated();
     }
