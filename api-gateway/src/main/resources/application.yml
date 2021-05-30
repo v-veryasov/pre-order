@@ -7,38 +7,11 @@ spring:
     name: api-gateway
   main:
     banner-mode: off
-#  jackson:
-#    serialization:
-#      write-dates-as-timestamps: true
-#      write-date-timestamps-as-nanoseconds: false
-#    default-property-inclusion: non_null
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/pre-order-booking
-#    driver-class-name: org.postgresql.Driver
-#    username: booking
-#    password: booking
-#  jpa:
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.PostgreSQLDialect
-#        jdbc.lob.non_contextual_creation: true #HHH-12368
-##        temp:
-##          use_jdbc_metadata_defaults: true
-#  liquibase:
-#    enabled: false
-#    change-log: classpath:db/changelog/master.xml
-#  kafka:
-#    consumer:
-#      group-id: tpd-loggers
-#      auto-offset-reset: earliest
-#    # change this property if you are using your own
-#    # Kafka cluster or your Docker IP is different
-#    bootstrap-servers: localhost:9092
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8184/eureka/
+      defaultZone: http://localhost:8085/eureka/
 
 feign:
   hystrix:
@@ -66,17 +39,26 @@ hystrix:
 
 zuul:
   ignored-services: '*'
-
+  sensitiveHeaders: Cookie,Set-Cookie
 #  prefix: /api/v1
   routes:
+    auth:
+      path: /api/v1/auth/**
+      service-id: api-gateway-auth
+      stripPrefix: false
+    auth-sso:
+      path: /oauth/**
+      service-id: api-gateway-auth
+      stripPrefix: false
     booking:
       path: /api/v1/booking/**
       service-id: booking
 #      url: http://booking/api/v1/booking
       stripPrefix: false
     profile:
-      path: /profile/**
+      path: /api/v1/profile/**
       service-id: profile
+      stripPrefix: false
 
 logging:
   level:
@@ -85,13 +67,3 @@ logging:
     ru.edu: DEBUG
     org.springframework:
       web.filter.CommonsRequestLoggingFilter: DEBUG
-#      security: DEBUG
-
-#jwt:
-#  token:
-#    secret: jwtAppDemo
-#    expired: 360000
-#
-#tpd:
-#  topic-name: advice-topic
-#  messages-per-request: 10
