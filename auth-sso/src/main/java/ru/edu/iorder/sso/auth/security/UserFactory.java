@@ -1,5 +1,6 @@
-package ru.edu.iorder.sso.auth.security.jwt;
+package ru.edu.iorder.sso.auth.security;
 
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import ru.edu.iorder.sso.auth.model.Role;
@@ -9,13 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public final class JwtUserFactory {
+@NoArgsConstructor
+public final class UserFactory {
 
-    public JwtUserFactory() {
-    }
-
-    public static JwtUser create(User user) {
-        return new JwtUser(
+    public static UserDetail create(User user) {
+        return new UserDetail(
                 user.getId(),
                 user.getUserName(),
                 user.getFirstName(),
