@@ -14,7 +14,8 @@
     <modules>
 <!--        <module>auth</module>-->
         <module>eureka</module>
-        <module>api-gateway-auth</module>
+        <module>api-gateway</module>
+        <module>auth-sso</module>
         <module>booking</module>
         <module>profile</module>
     </modules>

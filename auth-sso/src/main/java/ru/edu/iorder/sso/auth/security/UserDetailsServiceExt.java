@@ -7,14 +7,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.edu.iorder.sso.auth.model.User;
-import ru.edu.iorder.sso.auth.security.jwt.JwtUser;
-import ru.edu.iorder.sso.auth.security.jwt.JwtUserFactory;
 import ru.edu.iorder.sso.auth.service.UserService;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class JwtUserDetailsService implements UserDetailsService {
+public class UserDetailsServiceExt implements UserDetailsService {
 
     private final UserService userService;
 
@@ -26,8 +24,8 @@ public class JwtUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("User with username: " + username + " not found");
         }
 
-        JwtUser jwtUser = JwtUserFactory.create(user);
+        UserDetail userDetail = UserFactory.create(user);
         log.info("IN loadUserByUsername - user with username: {} successfully loaded", username);
-        return jwtUser;
+        return userDetail;
     }
 }

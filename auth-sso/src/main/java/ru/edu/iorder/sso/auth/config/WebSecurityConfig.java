@@ -13,10 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import ru.edu.iorder.sso.auth.security.JwtUserDetailsService;
-
-import javax.sql.DataSource;
+import ru.edu.iorder.sso.auth.security.UserDetailsServiceExt;
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +21,7 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private JwtUserDetailsService jwtUserDetailsService;
+    private UserDetailsServiceExt jwtUserDetailsService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 

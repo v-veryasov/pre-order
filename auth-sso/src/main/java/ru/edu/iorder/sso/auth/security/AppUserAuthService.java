@@ -11,10 +11,7 @@ import org.springframework.security.oauth2.provider.OAuth2Request;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.stereotype.Service;
 import ru.edu.iorder.sso.auth.dto.MessageResponseDto;
-import ru.edu.iorder.sso.auth.dto.UserDto;
 import ru.edu.iorder.sso.auth.model.User;
-import ru.edu.iorder.sso.auth.security.jwt.JwtUser;
-import ru.edu.iorder.sso.auth.security.jwt.JwtUserFactory;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -58,7 +55,7 @@ public class AppUserAuthService {
         OAuth2Request oauth2Request = new OAuth2Request(requestParameters, clientId, client.getAuthorities(), approved, scopes,
                 resourceIds, redirectUrl, responseTypes, extensionProperties);
 
-        JwtUser details = JwtUserFactory.create(user);
+        UserDetail details = UserFactory.create(user);
 
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(details, null, details.getAuthorities());

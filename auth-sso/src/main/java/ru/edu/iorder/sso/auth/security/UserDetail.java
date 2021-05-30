@@ -1,4 +1,4 @@
-package ru.edu.iorder.sso.auth.security.jwt;
+package ru.edu.iorder.sso.auth.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public class JwtUser implements UserDetails {
+public class UserDetail implements UserDetails {
 
     private final Long id;
     private final String username;
