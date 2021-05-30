@@ -1,5 +1,5 @@
 server:
-  port: ${SERVER_PORT:8182}
+  port: ${SERVER_PORT:8091}
   max-http-header-size: 16KB
 
 spring:
@@ -36,7 +36,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8184/eureka/
+      defaultZone: http://localhost:8085/eureka/
 
 security:
   oauth2:
@@ -44,7 +44,7 @@ security:
       clientId: ${SECURITY_OAUTH2_CLIENT_ID:auth-id-service}
       clientSecret: ${SECURITY_OAUTH2_CLIENT_SECRET:secret}
       scope: trusted
-      accessTokenUri: http://localhost:8177/oauth/token
+      accessTokenUri: http://localhost:8090/oauth/token
 #      userAuthorizationUri: http://localhost:8177/oauth/token
 
     resource:
