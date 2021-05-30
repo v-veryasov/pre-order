@@ -1,10 +1,10 @@
 server:
-  port: ${SERVER_PORT:8177}
+  port: ${SERVER_PORT:8090}
   max-http-header-size: 16KB
 
 spring:
   application:
-    name: auth-sso
+    name: api-gateway-auth
   main:
     banner-mode: off
   jackson:
@@ -31,7 +31,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8184/eureka/
+      defaultZone: http://localhost:8085/eureka/
 
 # SSO
 security:
@@ -41,8 +41,8 @@ security:
       clientId: ${SECURITY_OAUTH2_CLIENT_ID:auth-id-service}
       clientSecret: ${SECURITY_OAUTH2_CLIENT_SECRET:secret}
       scope: trusted
-      accessTokenUri:  http://localhost:8177/oauth/token
-      userAuthorizationUri:  http://localhost:8177/oauth/token
+      accessTokenUri:  http://localhost:8090/oauth/token
+      userAuthorizationUri:  http://localhost:8090/oauth/token
     resource:
       jwt:
         keyValue: ${SECURITY_OAUTH2_JWT_KEY:jwt-secret}
