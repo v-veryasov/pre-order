@@ -1,11 +1,12 @@
 server:
-  port: ${SERVER_PORT:8184}
+  port: ${SERVER_PORT:8085}
   max-http-header-size: 16KB
 
 spring:
   application:
     name: eureka-service
-
+  main:
+    banner-mode: off
 eureka:
   instance:
     #eureka's host
