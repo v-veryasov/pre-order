@@ -10,7 +10,7 @@ spring:
 eureka:
   instance:
     #eureka's host
-    hostname: localhost
+    hostname: ${SERVER_HOST:localhost}
   client:
     #Do not register yourself with the registration center
     registerWithEureka: false
