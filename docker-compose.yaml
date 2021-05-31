@@ -1,6 +1,21 @@
 version: '3'
 
 services:
+  discovery:
+    container_name: discovery
+    build: ./eureka/
+    image: discovery:latest
+    ports:
+      - "8085:8085"
+  api-gateway:
+    container_name: api-gateway
+    build: ./api-gateway/
+    image: api-gateway:latest
+    ports:
+      - "8100:8100"
+    depends_on:
+      - discovery
+
 #  app:
 #    container_name: app
 #    image: 'pre-order:latest'
@@ -15,18 +30,20 @@ services:
 #      - SPRING_DATASOURCE_USERNAME=admin
 #      - SPRING_DATASOURCE_PASSWORD=admin
 #      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-  zookeeper:
-    image: wurstmeister/zookeeper
-    ports:
-      - "2181:2181"
-  kafka:
-    image: wurstmeister/kafka
-    ports:
-      - "9092:9092"
-    environment:
-      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+# TODO: нужно поправить!
+#  zookeeper:
+#    image: wurstmeister/zookeeper
+#    ports:
+#      - "2181:2181"
+#  kafka:
+#    image: wurstmeister/kafka
+#    ports:
+#      - "9092:9092"
+#    environment:
+#      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+#      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+#      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+
 #  db:
 #    image: 'postgres:13.1-alpine'
 #    container_name: db
