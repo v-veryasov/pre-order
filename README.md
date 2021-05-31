@@ -14,3 +14,5 @@ docker run -p 8095:8080 pre-order
 ###### Хранение в FS(на данный момент)
 
 docker-compose up flag -d
+
+docker run -p 8100:8100 api-gateway --network=pre-order
