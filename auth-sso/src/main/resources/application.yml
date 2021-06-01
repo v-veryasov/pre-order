@@ -13,7 +13,8 @@ spring:
       write-date-timestamps-as-nanoseconds: false
     default-property-inclusion: non_null
   datasource:
-    url: jdbc:postgresql://localhost:5432/pre-order-auth
+#    url: jdbc:postgresql://${DATASOURCE_HOST:localhost}:5431/pre-order-auth
+    url: jdbc:postgresql://db:5431/pre-order-auth
     driver-class-name: org.postgresql.Driver
     username: auth
     password: auth
@@ -31,7 +32,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8085/eureka/
+      defaultZone: http://${EUREKA_DEFAULT_ZONE:localhost}:8085/eureka/
 
 # SSO
 security:

@@ -15,7 +15,40 @@ services:
       - "8100:8100"
     depends_on:
       - discovery
+    environment:
+      - EUREKA_DEFAULT_ZONE=discovery
+  db:
+    container_name: db
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    ports:
+      - "5431:5432"
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pg
+  auth-sso:
+    container_name: auth-sso
+    build: ./auth-sso/
+    image: auth-sso:latest
+    ports:
+      - "8090:8090"
+    depends_on:
+      - discovery
+      - db
+    environment:
+      - DATASOURCE_HOST=db
+      - EUREKA_DEFAULT_ZONE=discovery
 
+#  profile:
+#    container_name: profile
+#    build: ./profile/
+#    image: profile:latest
+#    ports:
+#      - "8091:8091"
+#    depends_on:
+#      - discovery
 #  app:
 #    container_name: app
 #    image: 'pre-order:latest'
@@ -43,10 +76,3 @@ services:
 #      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
 #      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
 #      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
-
-#  db:
-#    image: 'postgres:13.1-alpine'
-#    container_name: db
-#    environment:
-#      - POSTGRES_USER=admin
-#      - POSTGRES_PASSWORD=admin
