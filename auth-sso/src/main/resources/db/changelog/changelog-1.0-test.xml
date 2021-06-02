@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet author="vladislav_veryasov" id="20210423-23">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM roles WHERE name='ROLE_USER' OR name='ROLE_ADMIN';
+            </sqlCheck>
+        </preConditions>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_USER"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210602-01">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM users WHERE username='tester';
+            </sqlCheck>
+        </preConditions>
+        <insert tableName="users">
+            <column name="username" value="tester"/>
+            <column name="email" value="ddf@gmail.com"/>
+            <column name="password" value="$2a$10$ckr4Z47f3Bl7tViFoD.CtuEB8nbvqamLY2YcCOO35Ae1cuEKwwnHK"/>
+            <column name="first_name" value="FN"/>
+            <column name="middle_name" value="MN"/>
+            <column name="last_name" value="LN"/>
+            <column name="phone_number" value="1234123412"/>
+            <column name="city" value="MSK"/>
+            <column name="rating" value="0"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210602-02">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM users_roles WHERE user_id=1 and role_id=1;
+            </sqlCheck>
+        </preConditions>
+        <insert tableName="users_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet author="vladislav_veryasov" id="20210519-07">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM oauth_client_details WHERE client_id='auth-id-service';
+            </sqlCheck>
+        </preConditions>
+        <insert tableName="oauth_client_details">
+            <column name="client_id" value="auth-id-service"/>
+            <column name="resource_ids" value="auth-sso"/>
+            <column name="client_secret" value="$2y$12$VNMG8YZKzkdj4vqQv9hoUuCG.ctT1Rdx6kzaJcnG0sDt9a9BmTusa"/>
+            <column name="scope" value="trusted"/>
+            <column name="authorized_grant_types" value="client_credentials,password,refresh_token,authorization_code"/>
+            <column name="authorities" value="ROLE_SUPER_ADMIN"/>
+            <column name="access_token_validity" value="36000"/>
+            <column name="refresh_token_validity" value="36000"/>
+            <column name="autoapprove" value="TRUE"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
