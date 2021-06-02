@@ -130,15 +130,6 @@
                                  referencedTableName="roles"/>
     </changeSet>
 
-    <changeSet author="vladislav_veryasov" id="20210423-23">
-        <insert tableName="roles">
-            <column name="name" value="ROLE_USER"/>
-        </insert>
-        <insert tableName="roles">
-            <column name="name" value="ROLE_ADMIN"/>
-        </insert>
-    </changeSet>
-
     <!-- ============= Spring Oauth2 Schema ============ -->
 
     <changeSet author="vladislav_veryasov" id="20210519-01">
@@ -212,19 +203,6 @@
     </changeSet>
 
     <!-- ============= Spring Oauth2 Authori ============ -->
-    <changeSet author="vladislav_veryasov" id="20210519-07">
-        <insert tableName="oauth_client_details">
-            <column name="client_id" value="auth-id-service"/>
-            <column name="resource_ids" value="auth-sso"/>
-            <column name="client_secret" value="$2y$12$VNMG8YZKzkdj4vqQv9hoUuCG.ctT1Rdx6kzaJcnG0sDt9a9BmTusa"/>
-            <column name="scope" value="trusted"/>
-            <column name="authorized_grant_types" value="client_credentials,password,refresh_token,authorization_code"/>
-            <column name="authorities" value="ROLE_SUPER_ADMIN"/>
-            <column name="access_token_validity" value="36000"/>
-            <column name="refresh_token_validity" value="36000"/>
-            <column name="autoapprove" value="TRUE"/>
-        </insert>
-    </changeSet>
 
     <!--
         <changeSet author="vladislav_veryasov" id="20210430-006">
