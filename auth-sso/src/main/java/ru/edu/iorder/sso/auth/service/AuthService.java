@@ -2,21 +2,12 @@ package ru.edu.iorder.sso.auth.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.stereotype.Service;
 import ru.edu.iorder.sso.auth.dto.MessageResponseDto;
 import ru.edu.iorder.sso.auth.dto.UserDto;
 import ru.edu.iorder.sso.auth.mapper.UserMapper;
 import ru.edu.iorder.sso.auth.model.User;
 import ru.edu.iorder.sso.auth.security.AppUserAuthService;
-//import ru.edu.iorder.sso.auth.security.jwt.JwtTokenProvider;
 
 import java.util.Optional;
 
