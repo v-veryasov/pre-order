@@ -16,18 +16,8 @@ services:
     depends_on:
       - discovery
     environment:
-      - EUREKA_DEFAULT_ZONE=discovery
-  db:
-    container_name: db
-    build:
-      context: ./db
-      dockerfile: Dockerfile
-    ports:
-      - "5431:5432"
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=pg
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery:8085/eureka/
+
   auth-sso:
     container_name: auth-sso
     build: ./auth-sso/
@@ -38,17 +28,40 @@ services:
       - discovery
       - db
     environment:
-      - DATASOURCE_HOST=db
-      - EUREKA_DEFAULT_ZONE=discovery
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-dev:5432/pre-order-auth
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery:8085/eureka/
+  profile:
+    container_name: profile
+    build: ./profile/
+    image: profile:latest
+    ports:
+      - "8091:8091"
+    depends_on:
+      - discovery
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-dev:5432/pre-order-profile
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery:8085/eureka/
+  db:
+    container_name: db
+    image: db:latest
+    hostname: db-dev
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    ports:
+      - "5431:5432/tcp"
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=pg
+    volumes:
+      - db_data_dev:/var/lib/postgresql/data
 
-#  profile:
-#    container_name: profile
-#    build: ./profile/
-#    image: profile:latest
-#    ports:
-#      - "8091:8091"
-#    depends_on:
-#      - discovery
+volumes:
+  db_data_dev:
+    driver: local
+
 #  app:
 #    container_name: app
 #    image: 'pre-order:latest'
