@@ -1,8 +1,7 @@
 FROM openjdk:8-jdk-alpine
 
 ARG JAR_FILE=target/*.jar
-ENV SERVER_PORT=8085 \
-    SERVER_HOST=localhost
+ENV SERVER_PORT=8085
 
 EXPOSE $SERVER_PORT
 ENTRYPOINT java -jar /opt/pre-order/eureka.jar
