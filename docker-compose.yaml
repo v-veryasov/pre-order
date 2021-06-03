@@ -42,6 +42,18 @@ services:
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db-dev:5432/pre-order-profile
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery:8085/eureka/
+  booking:
+    container_name: booking
+    build: ./booking/
+    image: booking:latest
+    ports:
+      - "8092:8092"
+    depends_on:
+      - discovery
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-dev:5432/pre-order-booking
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery:8085/eureka/
   db:
     container_name: db
     image: db:latest
@@ -62,20 +74,6 @@ volumes:
   db_data_dev:
     driver: local
 
-#  app:
-#    container_name: app
-#    image: 'pre-order:latest'
-#    ports:
-#    - 8080:8095
-#    build:
-#      context: .
-#    depends_on:
-#      - db
-#    environment:
-#      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/pre-order
-#      - SPRING_DATASOURCE_USERNAME=admin
-#      - SPRING_DATASOURCE_PASSWORD=admin
-#      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
 # TODO: нужно поправить!
 #  zookeeper:
 #    image: wurstmeister/zookeeper
