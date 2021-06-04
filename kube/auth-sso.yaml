@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-sso
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-sso
+  template:
+    metadata:
+      labels:
+        app: auth-sso
+    spec:
+      containers:
+        - name: auth-sso
+          image: vveryasov/auth-sso:1.0.0
+          ports:
+            - containerPort: 8090
+          env:
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+              value: "http://discovery/eureka/"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://db-dev:5432/pre-order-auth"
+          imagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-sso
+spec:
+  selector:
+    app: auth-sso
+  ports:
+    - port: 80
+      targetPort: 8090
