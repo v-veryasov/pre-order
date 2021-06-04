@@ -14,12 +14,9 @@ spec:
     spec:
       containers:
         - name: discovery
-          image: learnk8s/knote-java:1.0.0
+          image: vveryasov/discovery:1.0.0
           ports:
-            - containerPort: 8080
-          env:
-            - name: MONGO_URL
-              value: mongodb://mongo:27017/dev
+            - containerPort: 8085
           imagePullPolicy: Always
 
 ---
@@ -27,11 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: knote
+  name: discovery
 spec:
   selector:
-    app: knote
+    app: discovery
   ports:
     - port: 80
-      targetPort: 8080
-  type: LoadBalancer
+      targetPort: 8085
