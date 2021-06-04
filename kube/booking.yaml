@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: booking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: booking
+  template:
+    metadata:
+      labels:
+        app: booking
+    spec:
+      containers:
+        - name: booking
+          image: vveryasov/booking:1.0.0
+          ports:
+            - containerPort: 8092
+          env:
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+              value: "http://discovery/eureka/"
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://db-dev:5432/pre-order-booking"
+          imagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: booking
+spec:
+  selector:
+    app: booking
+  ports:
+    - port: 80
+      targetPort: 8092
