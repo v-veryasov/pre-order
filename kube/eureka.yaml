@@ -17,6 +17,11 @@ spec:
           image: vveryasov/discovery:1.0.0
           ports:
             - containerPort: 8085
+          env:
+            - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+              value: http://discovery:8085/eureka/
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: discovery
           imagePullPolicy: Always
 
 ---
@@ -29,5 +34,6 @@ spec:
   selector:
     app: discovery
   ports:
-    - port: 80
+    - port: 8085
       targetPort: 8085
+  type: LoadBalancer
