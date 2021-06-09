@@ -42,6 +42,9 @@ zuul:
   sensitiveHeaders: Cookie,Set-Cookie
 #  prefix: /api/v1
   routes:
+    ribbon:
+      eager-load:
+        enabled: true
 #    auth-sso-new:
 #      path: /api/v1/auth/test
 #      url: http://api-gateway-auth/api/v1/auth/test
@@ -49,6 +52,7 @@ zuul:
     auth:
       path: /api/v1/auth/**
       service-id: auth-sso
+      retryable: true
       stripPrefix: false
     auth-sso-oauth:
       path: /oauth/**

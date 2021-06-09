@@ -20,7 +20,7 @@ docker run -p 8100:8100 api-gateway --network=pre-order
 docker run --name=api-gateway --rm -p 8100:8100 api-gateway
 
 kubectl apply -f kube
-minikube service api-gateway --url : создает туннель
+minikube service api-gateway --url : получам URL или создаёт туннель
 minikube service list
 kubectl logs api-gateway-79686bbf4f-6w4ds
 kubectl get pods --watch
