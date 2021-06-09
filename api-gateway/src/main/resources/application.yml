@@ -30,35 +30,43 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000
+            timeoutInMilliseconds: 10000
     profile:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 5000
+            timeoutInMilliseconds: 10000
 
 zuul:
   ignored-services: '*'
   sensitiveHeaders: Cookie,Set-Cookie
 #  prefix: /api/v1
   routes:
+    ribbon:
+      eager-load:
+        enabled: true
+#    auth-sso-new:
+#      path: /api/v1/auth/test
+#      url: http://api-gateway-auth/api/v1/auth/test
+#      stripPrefix: false
     auth:
       path: /api/v1/auth/**
-      service-id: api-gateway-auth
+      service-id: auth-sso
+      retryable: true
       stripPrefix: false
-    auth-sso:
+    auth-sso-oauth:
       path: /oauth/**
-      service-id: api-gateway-auth
+      service-id: auth-sso
       stripPrefix: false
-    booking:
-      path: /api/v1/booking/**
-      service-id: booking
-#      url: http://booking/api/v1/booking
-      stripPrefix: false
-    profile:
-      path: /api/v1/profile/**
-      service-id: profile
-      stripPrefix: false
+#    booking:
+#      path: /api/v1/booking/**
+#      service-id: booking
+##      url: http://booking/api/v1/booking
+#      stripPrefix: false
+#    profile:
+#      path: /api/v1/profile/**
+#      service-id: profile
+#      stripPrefix: false
 
 logging:
   level:
@@ -67,3 +75,9 @@ logging:
     ru.edu: DEBUG
     org.springframework:
       web.filter.CommonsRequestLoggingFilter: DEBUG
+
+auth-sso:
+  ribbon:
+    eureka:
+      enabled: false
+    listOfServers: ${AUTH_SSO_SERVERS_LIST:http://localhost:8090}

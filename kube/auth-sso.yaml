@@ -19,7 +19,7 @@ spec:
             - containerPort: 8090
           env:
             - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
-              value: "http://discovery/eureka/"
+              value: "http://discovery:8085/eureka/"
             - name: SPRING_DATASOURCE_URL
               value: "jdbc:postgresql://db-dev:5432/pre-order-auth"
           imagePullPolicy: Always
@@ -34,5 +34,5 @@ spec:
   selector:
     app: auth-sso
   ports:
-    - port: 80
+    - port: 8090
       targetPort: 8090
