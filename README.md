@@ -22,6 +22,8 @@ mvnw package -DskipTests
 docker build -t vveryasov/api-gateway:1.0.0 ./api-gateway
 docker push vveryasov/api-gateway:1.0.0
 ```
+Выполнить скрипт в init-volumes.bat
+
 Запуск с помощью docker-compose:
 ```
 docker-compose up flag -d
