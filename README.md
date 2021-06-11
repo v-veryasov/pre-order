@@ -7,11 +7,10 @@ This application is a booking service
 - api-gateway - маршрутизация Zuul(+eureka)
 - eureka - Eureka Server
 - auth-sso - авторизация и аутентификация OAuth2
-- booking - сервис с "бизнес-логикой" 
-- profile - сервис с "бизнес-логикой"
-- db - модуль наката структуры БД.(для БД в Docker контейнере)
+- booking - сервис с "бизнес-логикой" (producer message: Kafka)
+- profile - сервис с "бизнес-логикой" (receiver message: Kafka)
+- db - модуль наката структуры БД postgresql.(для БД в Docker контейнере)
 
-- check-test модуль для тестирования без Spring Security
 - auth - авторизация и аутентификация JWT
 ## Развертывание:
 На примере случайного модуля:
