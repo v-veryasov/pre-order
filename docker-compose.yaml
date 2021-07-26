@@ -39,9 +39,12 @@ services:
     depends_on:
       - discovery
       - db
+      - zookeeper
+      - kafka
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db-dev:5432/pre-order-profile
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery:8085/eureka/
+      - SPRING_KAFKA_BOOTSTRAP_SERV=kafka:9092
   booking:
     container_name: booking
     build: ./booking/
@@ -51,9 +54,12 @@ services:
     depends_on:
       - discovery
       - db
+      - zookeeper
+      - kafka
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db-dev:5432/pre-order-booking
       - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery:8085/eureka/
+      - SPRING_KAFKA_BOOTSTRAP_SERV=kafka:9092
   db:
     container_name: db
     image: db:latest
@@ -70,20 +76,20 @@ services:
     volumes:
       - db_data_dev:/var/lib/postgresql/data
 
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+    depends_on:
+      - zookeeper
 volumes:
   db_data_dev:
     driver: local
-
-# TODO: нужно поправить!
-#  zookeeper:
-#    image: wurstmeister/zookeeper
-#    ports:
-#      - "2181:2181"
-#  kafka:
-#    image: wurstmeister/kafka
-#    ports:
-#      - "9092:9092"
-#    environment:
-#      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
-#      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-#      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'

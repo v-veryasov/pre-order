@@ -18,6 +18,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/eureka/**").permitAll()
+                .antMatchers("/api/v1/kafka/**").permitAll()
                 .anyRequest().authenticated();
     }
 

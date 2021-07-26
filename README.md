@@ -7,11 +7,10 @@ This application is a booking service
 - api-gateway - маршрутизация Zuul(+eureka)
 - eureka - Eureka Server
 - auth-sso - авторизация и аутентификация OAuth2
-- booking - сервис с "бизнес-логикой" 
-- profile - сервис с "бизнес-логикой"
-- db - модуль наката структуры БД.(для БД в Docker) 
+- booking - сервис с "бизнес-логикой" (producer message: Kafka)
+- profile - сервис с "бизнес-логикой" (receiver message: Kafka)
+- db - модуль наката структуры БД postgresql.(для БД в Docker контейнере)
 - kube - папка с настройками развертывания(Kubernetes API)
-
 
 - auth - авторизация и аутентификация JWT
 ## Развертывание:
@@ -26,11 +25,12 @@ docker push vveryasov/api-gateway:1.0.0
 
 Запуск с помощью docker-compose:
 ```
-docker-compose up flag -d
+docker-compose up -d
 ```
+
 Для работы kubernetes требуется предварительная настройка "окружения" через PowerShell.exe:
 
-- kubectl - CLI kubernetes 
+- kubectl - CLI kubernetes
 - Minikube - tool для запуска одноузлового кластер
 
 После того, как все образы залиты в Docker Hub, запуск в кластере kubernetes:
