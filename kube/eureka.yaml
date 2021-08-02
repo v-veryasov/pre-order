@@ -1,8 +1,9 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: discovery
 spec:
+  serviceName: "discovery"
   replicas: 1
   selector:
     matchLabels:
@@ -19,10 +20,12 @@ spec:
             - containerPort: 8085
           env:
             - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
+#              value: "http://discovery-0.eureka:8085/eureka"
               value: http://discovery:8085/eureka/
             - name: EUREKA_INSTANCE_HOSTNAME
               value: discovery
           imagePullPolicy: Always
+# http://eureka-0.eureka:8085/eureka
 
 ---
 
@@ -30,10 +33,30 @@ apiVersion: v1
 kind: Service
 metadata:
   name: discovery
+  labels:
+    app: discovery
+spec:
+  clusterIP: None
+  ports:
+    - port: 8085
+      name: discovery
+  selector:
+    app: discovery
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-lb
+  labels:
+    app: discovery
 spec:
   selector:
     app: discovery
+#  clusterIP: None
   ports:
-    - port: 8085
+    - port: 80
+#      name: discovery
       targetPort: 8085
-  type: LoadBalancer
+  type: NodePort
