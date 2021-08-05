@@ -11,9 +11,21 @@ spring:
     gateway:
       routes:
         - id: auth-sso
-          uri: lb://auth-sso
+          uri: http://auth-sso
           predicates:
             - Path=/api/v1/auth/**
+        - id: auth-sso-oauth
+          uri: http://auth-sso
+          predicates:
+            - Path=/oauth/**
+        - id: booking
+          uri: http://booking
+          predicates:
+            - Path=/api/v1/booking/**
+        - id: profile
+          uri: http://profile
+          predicates:
+            - Path=/api/v1/profile/**
 #          filters:
 #            - StripPrefix=0
 #            - name: CircuitBreaker
