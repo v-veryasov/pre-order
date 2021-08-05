@@ -7,18 +7,19 @@ spring:
     name: api-gateway
   main:
     banner-mode: off
-#  cloud:
-#    gateway:
-#      routes:
-#        - id: auth-sso
-#            uri: lb://auth-sso
-#            predicates:
-#              - Path=/api/v1/auth/**
-#            filters:
-#              - name: CircuitBreaker
-#                args:
-#                  name: auth-sso
-#                  fallbackuri: forward:/userServiceFallBack
+  cloud:
+    gateway:
+      routes:
+        - id: auth-sso
+          uri: lb://auth-sso
+          predicates:
+            - Path=/api/v1/auth/**
+#          filters:
+#            - StripPrefix=0
+#            - name: CircuitBreaker
+#              args:
+#                name: auth-sso
+#                fallbackuri: forward:/userServiceFallBack
 
 eureka:
   #  instance:
@@ -52,31 +53,31 @@ hystrix:
           thread:
             timeoutInMilliseconds: 10000
 
-zuul:
-  ignored-services: '*'
-  sensitiveHeaders: Cookie,Set-Cookie
-#  prefix: /api/v1
-  routes:
-    auth:
-      path: /api/v1/auth/**
-      service-id: auth-sso
-      url: "http://auth-sso"
-      stripPrefix: false
-    auth-sso-oauth:
-      path: /oauth/**
-      service-id: auth-sso
-      url: "http://auth-sso"
-      stripPrefix: false
-    booking:
-      path: /api/v1/booking/**
-      service-id: booking
-      url: "http://booking"
-      stripPrefix: false
-    profile:
-      path: /api/v1/profile/**
-      service-id: profile
-      url: "http://profile"
-      stripPrefix: false
+#zuul:
+#  ignored-services: '*'
+#  sensitiveHeaders: Cookie,Set-Cookie
+##  prefix: /api/v1
+#  routes:
+#    auth:
+#      path: /api/v1/auth/**
+#      service-id: auth-sso
+##      url: "http://auth-sso"
+#      stripPrefix: false
+#    auth-sso-oauth:
+#      path: /oauth/**
+#      service-id: auth-sso
+##      url: "http://auth-sso"
+#      stripPrefix: false
+#    booking:
+#      path: /api/v1/booking/**
+#      service-id: booking
+##      url: "http://booking"
+#      stripPrefix: false
+#    profile:
+#      path: /api/v1/profile/**
+#      service-id: profile
+##      url: "http://profile"
+#      stripPrefix: false
 
 logging:
   level:

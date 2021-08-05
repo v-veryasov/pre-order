@@ -7,6 +7,9 @@ services:
     image: discovery:latest
     ports:
       - "8085:8085"
+    environment:
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery:8085/eureka/
+      - EUREKA_INSTANCE_HOSTNAME=discovery
   api-gateway:
     container_name: api-gateway
     build: ./api-gateway/

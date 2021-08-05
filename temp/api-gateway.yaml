@@ -22,8 +22,15 @@ spec:
           env:
             - name: EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE
               value: http://discovery:8085/eureka/
-#            - name: AUTH_SSO_SERVERS_LIST
-#              value: http://auth-sso:8090
+#              Будет ли работать, проверить !!!!
+#            - name: ZUUL_ROUTES_URL_AUTH
+#              value: http://auth-sso
+#            - name: ZUUL_ROUTES_URL_AUTH-SSO-OAUTH
+#              value: http://auth-sso
+#            - name: ZUUL_ROUTES_URL_BOOKING
+#              value: http://booking
+#            - name: ZUUL_ROUTES_URL_PROFILE
+#              value: http://profile
           imagePullPolicy: Always
 
 ---
