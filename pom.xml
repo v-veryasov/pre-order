@@ -18,5 +18,6 @@
         <module>auth-sso</module>
         <module>booking</module>
         <module>profile</module>
+        <module>central-configuration</module>
     </modules>
 </project>
